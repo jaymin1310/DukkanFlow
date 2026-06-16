@@ -34,46 +34,48 @@ Millions of small businesses in India — kirana stores, medical shops, clothing
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 🏪 Multi-Tenant | Each shop gets fully isolated data — one system, many shops |
-| 🔐 JWT Auth | Secure stateless authentication with BCrypt password hashing |
-| 📦 Inventory | Full product & category management with SKU, stock tracking |
-| 🧾 Invoicing | Create professional invoices with discount, tax, PDF download |
-| 👥 Customers | Customer database with total purchase tracking |
-| 📊 Dashboard | Real-time revenue, stock alerts, sales overview chart |
-| 📈 Profit & Loss | Product-wise revenue, cost, profit margin analytics |
-| 📄 PDF Generation | Professional tax invoices generated in-memory with iText 7 |
-| 📱 Responsive | Mobile-first design with card layouts for small screens |
+| Feature           | Description                                                   |
+| ----------------- | ------------------------------------------------------------- |
+| 🏪 Multi-Tenant   | Each shop gets fully isolated data — one system, many shops   |
+| 🔐 JWT Auth       | Secure stateless authentication with BCrypt password hashing  |
+| 📦 Inventory      | Full product & category management with SKU, stock tracking   |
+| 🧾 Invoicing      | Create professional invoices with discount, tax, PDF download |
+| 👥 Customers      | Customer database with total purchase tracking                |
+| 📊 Dashboard      | Real-time revenue, stock alerts, sales overview chart         |
+| 📈 Profit & Loss  | Product-wise revenue, cost, profit margin analytics           |
+| 📄 PDF Generation | Professional tax invoices generated in-memory with iText 7    |
+| 📱 Responsive     | Mobile-first design with card layouts for small screens       |
 
 ---
 
 ## 🛠 Tech Stack
 
 ### Backend
-| Technology | Version | Purpose |
-|---|---|---|
-| Java | 21 (LTS) | Core language |
-| Spring Boot | 3.2.5 | REST API framework |
-| Spring Security | 6.x | Authentication & authorization |
-| Spring Data JPA | 3.x | ORM & database layer |
-| PostgreSQL | 16 | Relational database |
-| JJWT | 0.11.5 | JWT token generation & validation |
-| iText 7 | 7.2.5 | PDF invoice generation |
-| Lombok | Latest | Boilerplate reduction |
-| SpringDoc OpenAPI | 2.3.0 | Swagger API documentation |
+
+| Technology        | Version  | Purpose                           |
+| ----------------- | -------- | --------------------------------- |
+| Java              | 21 (LTS) | Core language                     |
+| Spring Boot       | 3.2.5    | REST API framework                |
+| Spring Security   | 6.x      | Authentication & authorization    |
+| Spring Data JPA   | 3.x      | ORM & database layer              |
+| PostgreSQL        | 16       | Relational database               |
+| JJWT              | 0.11.5   | JWT token generation & validation |
+| iText 7           | 7.2.5    | PDF invoice generation            |
+| Lombok            | Latest   | Boilerplate reduction             |
+| SpringDoc OpenAPI | 2.3.0    | Swagger API documentation         |
 
 ### Frontend
-| Technology | Version | Purpose |
-|---|---|---|
-| React | 19 | UI framework |
-| Vite | 8 | Build tool & dev server |
-| React Router DOM | 7 | Client-side routing |
-| Axios | 1.x | HTTP client with interceptors |
-| Tailwind CSS | 4 | Utility-first styling |
-| Recharts | 3.x | Dashboard charts |
-| Lucide React | Latest | Icon library |
-| React Hot Toast | 2.x | Toast notifications |
+
+| Technology       | Version | Purpose                       |
+| ---------------- | ------- | ----------------------------- |
+| React            | 19      | UI framework                  |
+| Vite             | 8       | Build tool & dev server       |
+| React Router DOM | 7       | Client-side routing           |
+| Axios            | 1.x     | HTTP client with interceptors |
+| Tailwind CSS     | 4       | Utility-first styling         |
+| Recharts         | 3.x     | Dashboard charts              |
+| Lucide React     | Latest  | Icon library                  |
+| React Hot Toast  | 2.x     | Toast notifications           |
 
 ---
 
@@ -116,6 +118,7 @@ Millions of small businesses in India — kirana stores, medical shops, clothing
 ```
 
 ### Request Flow
+
 1. React sends request with `Authorization: Bearer <token>`
 2. `JwtFilter` validates token → extracts email → sets auth in `SecurityContextHolder`
 3. Controller receives request → calls Service
@@ -124,6 +127,7 @@ Millions of small businesses in India — kirana stores, medical shops, clothing
 6. Response mapped to DTO → returned as JSON
 
 ### Multi-Tenancy Design
+
 Every entity (`Category`, `Product`, `Customer`, `Invoice`) has a `shop_id` foreign key. `ShopContext` extracts the authenticated user's shop from the JWT on every request — no cross-shop data leakage is possible.
 
 ---
@@ -131,37 +135,48 @@ Every entity (`Category`, `Product`, `Customer`, `Invoice`) has a `shop_id` fore
 ## 📸 Screenshots
 
 ### Landing Page
+
 ![Landing Page](screenshots/landing.png)
 
 ### Login & Register
+
 ![Login](screenshots/login.png)
 ![Register](screenshots/register.png)
 
 ### Dashboard
+
 ![Dashboard](screenshots/dashboard.png)
 
 ### Products Management
+
 ![Products](screenshots/products.png)
 
 ### Categories
+
 ![Categories](screenshots/categories.png)
 
 ### Customers
+
 ![Customers](screenshots/customers.png)
 
 ### Invoices
+
 ![Invoices](screenshots/invoices.png)
 
 ### Create Invoice
+
 ![Create Invoice](screenshots/create-invoice.png)
 
 ### Profit & Loss Report
+
 ![Profit & Loss](screenshots/profit-loss.png)
 
 ### Shop Profile
+
 ![Shop Profile](screenshots/profile.png)
 
 ### Mobile Responsive
+
 ![Mobile](screenshots/mobile.png)
 
 ---
@@ -239,6 +254,7 @@ invoice_items
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Java 21+
 - Node.js 18+
 - PostgreSQL 14+
@@ -256,6 +272,7 @@ cd DukaanFlow/inventory-api/inventory-api
 ```
 
 Create `src/main/resources/application.properties`:
+
 ```properties
 spring.application.name=inventory-api
 
@@ -302,55 +319,62 @@ Frontend runs at `http://localhost:5173`
 ## 📡 API Endpoints
 
 ### Auth
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/auth/register` | Register shop + owner |
-| POST | `/api/auth/login` | Login → returns JWT |
+
+| Method | Endpoint             | Description           |
+| ------ | -------------------- | --------------------- |
+| POST   | `/api/auth/register` | Register shop + owner |
+| POST   | `/api/auth/login`    | Login → returns JWT   |
 
 ### Categories
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/categories` | Get all categories |
-| POST | `/api/categories` | Create category |
-| PUT | `/api/categories/{id}` | Update category |
-| DELETE | `/api/categories/{id}` | Delete category |
+
+| Method | Endpoint               | Description        |
+| ------ | ---------------------- | ------------------ |
+| GET    | `/api/categories`      | Get all categories |
+| POST   | `/api/categories`      | Create category    |
+| PUT    | `/api/categories/{id}` | Update category    |
+| DELETE | `/api/categories/{id}` | Delete category    |
 
 ### Products
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/products` | Get all products |
-| POST | `/api/products` | Create product |
-| PUT | `/api/products/{id}` | Update product |
-| DELETE | `/api/products/{id}` | Delete product |
+
+| Method | Endpoint             | Description      |
+| ------ | -------------------- | ---------------- |
+| GET    | `/api/products`      | Get all products |
+| POST   | `/api/products`      | Create product   |
+| PUT    | `/api/products/{id}` | Update product   |
+| DELETE | `/api/products/{id}` | Delete product   |
 
 ### Customers
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/customers` | Get all customers |
-| POST | `/api/customers` | Add customer |
-| PUT | `/api/customers/{id}` | Update customer |
-| DELETE | `/api/customers/{id}` | Delete customer |
+
+| Method | Endpoint              | Description       |
+| ------ | --------------------- | ----------------- |
+| GET    | `/api/customers`      | Get all customers |
+| POST   | `/api/customers`      | Add customer      |
+| PUT    | `/api/customers/{id}` | Update customer   |
+| DELETE | `/api/customers/{id}` | Delete customer   |
 
 ### Invoices
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/invoices` | Get all invoices |
-| GET | `/api/invoices?period=week` | Filter by period |
-| POST | `/api/invoices` | Create invoice (deducts stock) |
-| GET | `/api/invoices/{id}/pdf` | Download PDF |
-| DELETE | `/api/invoices/{id}` | Delete invoice |
+
+| Method | Endpoint                    | Description                    |
+| ------ | --------------------------- | ------------------------------ |
+| GET    | `/api/invoices`             | Get all invoices               |
+| GET    | `/api/invoices?period=week` | Filter by period               |
+| POST   | `/api/invoices`             | Create invoice (deducts stock) |
+| GET    | `/api/invoices/{id}/pdf`    | Download PDF                   |
+| DELETE | `/api/invoices/{id}`        | Delete invoice                 |
 
 ### Dashboard & Reports
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/dashboard` | Summary stats |
-| GET | `/api/profit-loss` | P&L report |
+
+| Method | Endpoint           | Description   |
+| ------ | ------------------ | ------------- |
+| GET    | `/api/dashboard`   | Summary stats |
+| GET    | `/api/profit-loss` | P&L report    |
 
 ### Shop
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/shop` | Get shop profile |
-| PUT | `/api/shop` | Update shop info |
+
+| Method | Endpoint    | Description      |
+| ------ | ----------- | ---------------- |
+| GET    | `/api/shop` | Get shop profile |
+| PUT    | `/api/shop` | Update shop info |
 
 > All endpoints except `/api/auth/**` require `Authorization: Bearer <token>` header.
 
@@ -396,9 +420,10 @@ DukaanFlow/
 
 ## 👨‍💻 Author
 
-**Yug Patel**
-- GitHub: [@yugp21](https://github.com/yugp21)
-- Information Technology Student | Gujarat, India
+**Jaymin Solanki**
+
+- GitHub: [@jaymin1310](https://github.com/jaymin1310)
+- Computer Engineer | Gujarat, India
 
 ---
 
