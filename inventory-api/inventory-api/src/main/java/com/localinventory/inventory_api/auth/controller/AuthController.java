@@ -1,8 +1,12 @@
 package com.localinventory.inventory_api.auth.controller;
 
+import com.localinventory.inventory_api.auth.dto.ApiResponse;
 import com.localinventory.inventory_api.auth.dto.LoginRequest;
 import com.localinventory.inventory_api.auth.dto.LoginResponse;
+import com.localinventory.inventory_api.auth.dto.OtpRequest;
 import com.localinventory.inventory_api.auth.dto.RegisterRequest;
+import com.localinventory.inventory_api.auth.dto.ResetPasswordRequest;
+import com.localinventory.inventory_api.auth.dto.VerifyOtpRequest;
 import com.localinventory.inventory_api.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +28,20 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<ApiResponse> forgotPassword(@Valid @RequestBody OtpRequest request) {
+        return ResponseEntity.ok(authService.forgotPassword(request));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<ApiResponse> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        return ResponseEntity.ok(authService.resetPassword(request));
+    }
+
+    @PostMapping("/verify-registration-otp")
+    public ResponseEntity<ApiResponse> verifyRegistrationOtp(@Valid @RequestBody VerifyOtpRequest request) {
+        return ResponseEntity.ok(authService.verifyRegistrationOtp(request));
     }
 }
